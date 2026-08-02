@@ -1,0 +1,92 @@
+http://msp.rivannoc.com/otrs/customer.pl
+
+l3/L4 SENIOR NETWORK ENGINEER:
+http://msp.rivannoc.com/otrs/index.pl
+admin
+c!sc0123
+
+task 6: IMPLEMENTING THE DESIGN
+
+D1/C1:
+
+conf t
+vlan 2
+name PETRONINC.COM
+Interface vlan 2
+ desc PETRONINC.COM
+ no shut
+ ip add 10.0.8.1 255.255.248.0
+ip dhcp excluded-add 10.0.8.1 10.0.8.50
+ip dhcp pool PETRONINC.COM
+ network 10.0.8.0 255.255.248.0
+ default-router 10.0.8.1
+domain-name PETRONIC.COM
+end
+
+A1sw:
+
+conf t
+interface e0/0
+switchport mode access
+switchport access vlan 2
+do sh vlan brief
+
+P1: petronPC: 
+
+conf t 
+int e0/0
+no shut
+ip address dhcp
+end
+
+task 7: IMPLEMENTING THE DESIGN FOR PHOENIXINC.COM
+
+D1/C1:
+
+conf t
+vlan 8
+name CALTEXTINC.COM
+Interface vlan 8
+ desc CALTEXTINC.COM
+ no shut
+ ip add 10.0.64.1 255.255.192.0
+ip dhcp excluded-add 10.0.64.1 10.0.67.50
+ip dhcp pool CALTEXTINC.COM
+ network 10.0.64.0 255.255.192.0
+ default-router 10.0.64.1
+domain-name CALTEXTINC.COM
+end
+
+A1sw:
+
+conf t
+interface e1/0
+switchport mode access
+switchport access vlan 8
+do sh vlan brief
+
+P2: PHOENIXPC: 
+
+conf t 
+int e1/0
+no shut
+ip address dhcp
+end
+
+TASK 8
+
+CALTEXT.COM
+10.0.0.8
+8500host
+
+
+
+
+
+
+
+
+
+
+
+
